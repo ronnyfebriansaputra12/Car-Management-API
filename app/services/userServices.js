@@ -32,7 +32,13 @@ module.exports = {
     return userRepository.find(id);
   },
 
-  findOne(email){
-    return userRepository.findByPk(email)
+  findOne(id){
+    return userRepository.findOne(id)
+  },
+
+  findByPk(id){
+    return userRepository.findByPk(id)
   }
+
+  
 };

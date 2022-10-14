@@ -16,8 +16,7 @@ apiRouter.delete(
   "/api/v1/cars/:id",
   controllers.api.v1.carController.destroy
 );
-apiRouter.get(
-  "/api/v1/whoami",
+apiRouter.get("/api/v1/whoami",
   controllers.api.v1.authController.authorize,
   controllers.api.v1.authController.whoAmI
 );

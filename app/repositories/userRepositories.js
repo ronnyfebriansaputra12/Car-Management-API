@@ -18,8 +18,12 @@ module.exports = {
     return User.destroy(id);
   },
 
-  findByPk(email) {
-    return User.findByPk(email);
+  findByPk(id) {
+    return User.findByPk(id);
+  },
+
+  findOne(id) {
+    return User.findOne(id);
   },
 
   findAll() {

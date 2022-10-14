@@ -43,7 +43,6 @@
  }
  
  module.exports = {
- 
    //FUNCTION UNTUK REGISTER
    async register(req, res) {
      const email = req.body.email;

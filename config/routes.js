@@ -3,7 +3,7 @@ const controllers = require("../app/controllers");
 const YAML = require('yamljs')
 const swaggerUi = require('swagger-ui-express');
 
-const swaggerDocument = YAML.load('')
+const swaggerDocument = YAML.load("./openApi.yaml")
 
 const apiRouter = express.Router();
 

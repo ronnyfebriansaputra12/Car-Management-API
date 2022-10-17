@@ -1,0 +1,81 @@
+openapi: 3.0.0
+info:
+  title: Cars Manajement API
+  version: 0.0.1
+servers:
+  - description: Local Server
+    url: http://localhost:8000/
+tags:
+  - name: Cars
+    description: Contain every operation about Cars Resource
+paths:
+  /api/v1/cars:
+    get:
+      operationId: getAllCars
+      tags:
+      - Cars
+      responses:
+        "200":
+          description: responses success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: SUCCESS
+                  data:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: "SUCCESS"
+                      message:
+                        type: string
+        "401":
+          description: responses success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: TIDAK SUCCESS
+                  data:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: "SUCCESS"
+                      message:
+                        type: string
+                        example: "DATA BERHASIL DI SIMPAN"
+
+components:
+  schemas:
+    Cars:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        nama:
+          type: string
+          example: BMW
+        harga:
+          type: integer
+          example: 200000
+        ukuran:
+          type: string
+          example: Small
+        gambar:
+          type: string
+          example: mobil.jpg
+        createdAt:
+          type: string
+          example: "2021-07-30 17:00:00 +0700"
+        updatedAt:  
+          type: string
+          example: "2021-07-30 17:00:00 +0700"

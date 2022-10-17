@@ -1,5 +1,9 @@
 const express = require("express");
 const controllers = require("../app/controllers");
+const YAML = require('yamljs')
+const swaggerUi = require('swagger-ui-express');
+
+const swaggerDocument = YAML.load('')
 
 const apiRouter = express.Router();
 
@@ -7,6 +11,8 @@ const apiRouter = express.Router();
  * TODO: Implement your own API
  *       implementations
  */
+
+apiRouter.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 apiRouter.get("/api/v1/cars", controllers.api.v1.carController.list);
 apiRouter.post("/api/v1/cars", controllers.api.v1.carController.create);

@@ -24,8 +24,15 @@ module.exports = {
   },
 
   create(req, res) {
+    userEmail = Object.values(req.user)[0].email;
     carService
-      .create(req.body)
+      .create({
+        name: req.body.name,
+        rentPerDay: req.body.rentPerDay,
+        type: req.body.type,
+        image: req.body.image,
+        createBy: userEmail
+      })
       .then((post) => {
         res.status(201).json({
           status: "OK",
@@ -41,8 +48,15 @@ module.exports = {
   },
 
   update(req, res) {
+    userEmail = Object.values(req.user)[0].email;
     carService
-      .update(req.params.id, req.body)
+      .update(req.params.id, {
+        name: req.body.name,
+        rentPerDay: req.body.rentPerDay,
+        type: req.body.type,
+        image: req.body.image,
+        updateBy: userEmail
+      })
       .then(() => {
         res.status(200).json({
           status: "OK",

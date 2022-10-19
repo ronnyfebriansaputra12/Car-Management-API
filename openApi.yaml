@@ -16,7 +16,7 @@ paths:
       - Cars
       responses:
         "200":
-          description: responses success
+          description: responses success get all data cars
           content:
             application/json:
               schema:
@@ -34,7 +34,7 @@ paths:
                       message:
                         type: string
         "401":
-          description: responses success
+          description: Response when accessing protected endpoint without access
           content:
             application/json:
               schema:
@@ -42,18 +42,116 @@ paths:
                 properties:
                   status:
                     type: string
-                    example: TIDAK SUCCESS
+                    example: FAIL
                   data:
                     type: object
                     properties:
                       name:
                         type: string
-                        example: "SUCCESS"
+                        example: "UNAUTHORIZED"
                       message:
                         type: string
-                        example: "DATA BERHASIL DI SIMPAN"
+                        example: "Access is not granted"
+  /api/v1/insertCars:
+    post:
+      operationId: createCar
+      tags:
+      - Cars
+      requestBody:
+        $ref: "#/components/requestBodies/CarsRequest"
+      responses:
+        "200":
+          $ref: "#/components/responses/PostResponse"
+        "401":
+          $ref: "#/components/responses/UnauthorizedResponse"
+        "403":
+          $ref: "#/components/responses/ForbiddenResponse"
+
 
 components:
+  requestBodies:
+      CarsRequest:
+        description: Create Car Data
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nama:
+                  type: string
+                  example: "BMW"
+                harga:
+                  type: integer
+                  example: 200000
+                ukuran:
+                  type: string
+                  example: "Small"
+                gambar:
+                  type: string
+                  example: "bmw.jpg"
+  responses:
+      PostResponse:
+            description: create data car success
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      example: SUCCESS
+                    datas:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: "SUCCESS"
+                        message:
+                          type: string
+                        data:
+                          $ref: "#/components/schemas/Cars"
+                          
+      UnauthorizedResponse:
+            description: Response when accessing protected endpoint without access
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      example: FAIL
+                    data:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: "UNAUTHORIZED"
+                        message:
+                          type: string
+                          example: "Access is not granted"
+                          
+      ForbiddenResponse:
+            description: Response when accessing protected endpoint with access but sufficient access
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      example: FAIL
+                    data:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: "FORBIDDEN"
+                        message:
+                          type: string
+                          example: "Invalid access level"
+
   schemas:
     Cars:
       type: object

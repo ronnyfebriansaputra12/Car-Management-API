@@ -74,6 +74,7 @@ module.exports = {
   },
 
   destroy(req, res) {
+    console.log(req.params.id);
     carService
       .delete(req.params.id)
       .then(() => {

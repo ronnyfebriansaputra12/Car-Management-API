@@ -43,18 +43,36 @@
  }
  
  module.exports = {
+  encryptPassword,
    //FUNCTION UNTUK REGISTER
    async register(req, res) {
      const email = req.body.email;
+     const role = "member"
      const encryptedPassword = await encryptPassword(req.body.password);
-     const user = await UserServices.create({ email, encryptedPassword });
+     const user = await UserServices.create({ email, encryptedPassword, role});
      res.status(201).json({
        id: user.id,
        email: user.email,
+       role: user.role,
        createdAt: user.createdAt,
        updatedAt: user.updatedAt,
      });
    },
+
+   //FUNCTION UNTUK MEMBUAT ADMIN
+   async createAdmin(req, res) {
+    const email = req.body.email;
+    const role = "admin"
+    const encryptedPassword = await encryptPassword(req.body.password);
+    const user = await UserServices.create({ email, encryptedPassword, role});
+    res.status(201).json({
+      id: user.id,
+      email: user.email,
+      role: user.role,
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt,
+    });
+  },
  
    //FUNCTION LOGIN
    async login(req, res) {

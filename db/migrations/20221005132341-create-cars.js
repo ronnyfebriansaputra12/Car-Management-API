@@ -9,17 +9,26 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      nama: {
+      name: {
         type: Sequelize.STRING
       },
-      harga: {
+      rentPerDay: {
         type: Sequelize.INTEGER
       },
-      ukuran: {
+      type: {
         type: Sequelize.STRING
       },
-      gambar: {
-        type: Sequelize.BLOB
+      image: {
+        type: Sequelize.STRING
+      },
+      createBy: {
+        type: Sequelize.STRING
+      },
+      deleteBy: {
+        type: Sequelize.STRING
+      },
+      updateBy: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

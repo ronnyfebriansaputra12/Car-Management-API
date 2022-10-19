@@ -14,10 +14,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Cars.init({
-    nama: DataTypes.STRING,
-    harga: DataTypes.INTEGER,
-    ukuran: DataTypes.STRING,
-    gambar: DataTypes.BLOB
+    name: DataTypes.STRING,
+    rentPerDay: DataTypes.INTEGER,
+    type: DataTypes.STRING,
+    image: DataTypes.STRING,
+    createBy: DataTypes.STRING,
+    deleteBy: DataTypes.STRING,
+    updateBy: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Cars',

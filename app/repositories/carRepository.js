@@ -14,7 +14,10 @@ module.exports = {
   },
 
   delete(id) {
-    return Cars.destroy(id);
+    console.log(id);
+    return Cars.destroy({  
+      where: {id: id},
+      });
   },
 
   find(id) {

@@ -422,7 +422,7 @@ components:
                     example: "FORBIDDEN"
                   message:
                     type: string
-                    example: "Invalid access level"
+                    example: "you don't have permission"
 
     RegisterResponse:
       description: Created Member

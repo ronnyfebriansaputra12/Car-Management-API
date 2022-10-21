@@ -21,9 +21,9 @@ Lalu untuk menjalankan development server, kalian tinggal jalanin salah satu scr
 
 ```sh
 npm install
-sequalize db:create
+sequelize db:create
 sequelize db:migrate
-sequlize db:seed:all
+sequelize db:seed:all
 ```
 
 ## Database Management

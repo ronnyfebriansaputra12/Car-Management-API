@@ -27,7 +27,7 @@ apiRouter.put(
   controllers.api.v1.carController.verifyRoles("superAdmin", "admin"),
   controllers.api.v1.carController.update
 );
-apiRouter.get(controllers.api.v1.carController.show);
+apiRouter.get('/api/v1/cars/:id', controllers.api.v1.carController.show);
 apiRouter.delete(
   "/api/v1/cars/:id",
   controllers.api.v1.authController.authorize,

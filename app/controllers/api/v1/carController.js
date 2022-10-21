@@ -10,11 +10,11 @@ module.exports = {
         userRole = Object.values(req.user)[0].role;
         if(!userRole) return res.status(401).json({
             status: "FAIL",
-            message: "you don't have role",
+            message: "UNAUTHORIZED",
           });
         const rolesArray = [...allowedRoles];
         const result = rolesArray.includes(userRole);
-        if(!result) return res.status(401).json({
+        if(!result) return res.status(403).json({
             status: "FAIL",
             message: "you don't have permission",
           });
@@ -27,13 +27,13 @@ module.exports = {
       .list()
       .then(({ data, count }) => {
         res.status(200).json({
-          status: "OK",
+          status: "SUCCESS",
           data: { cars: data },
           meta: { total: count },
         });
       })
       .catch((err) => {
-        res.status(400).json({
+        res.status(422).json({
           status: "FAIL",
           message: err.message,
         });
@@ -52,8 +52,9 @@ module.exports = {
       })
       .then((post) => {
         res.status(201).json({
-          status: "Create Car successfully",
-          data: post,
+          status: "SUCCESS",
+          message: "Create Car successfully",
+          data: {car: post},
         });
       })
       .catch((err) => {
@@ -76,7 +77,8 @@ module.exports = {
       })
       .then(() => {
         res.status(200).json({
-          status: "Update Car successfully",
+          status: "SUCCESS",
+          message: "Update Car successfully"
         });
       })
       .catch((err) => {
@@ -92,8 +94,8 @@ module.exports = {
       .get(req.params.id)
       .then((post) => {
         res.status(200).json({
-          status: "OK",
-          data: post,
+          status: "SUCCESS",
+          data: {car: post},
         });
       })
       .catch((err) => {
@@ -110,7 +112,8 @@ module.exports = {
       .delete(req.params.id)
       .then(() => {
         res.status(200).json({
-          status: `Delete Car successfully By ${userEmail}`,
+          status: "SUCCESS",
+          message: `Delete Car successfully By ${userEmail}`,
         });
       })
       .catch((err) => {

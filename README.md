@@ -1,3 +1,13 @@
+# End-point & Notes
+## ***superadmin*** <br/>
+```
+Email: superadmin@gmail.com
+Password: challenge6
+```
+## End-point open-api
+- ***Access open api '/api-docs'*** <br/>
+[Access to open-api](http://127.0.0.1:8000/api-docs)
+
 # Binar: Express.js
 
 Repository ini ditujukan sebagai boilerplate dalam membuat sebuah HTTP Server menggunakan Express.js
@@ -10,7 +20,10 @@ Untuk mulai membuat sebuah implementasi dari HTTP Server, mulainya menginspeksi 
 Lalu untuk menjalankan development server, kalian tinggal jalanin salah satu script di package.json, yang namanya `develop`.
 
 ```sh
-yarn develop
+npm install
+sequalize db:create
+sequelize db:migrate
+sequlize db:seed:all
 ```
 
 ## Database Management

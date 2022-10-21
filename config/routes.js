@@ -1,6 +1,5 @@
 const express = require("express");
 const controllers = require("../app/controllers");
-const verifyRoles = require('../app/middleware/verifyRoles');
 const YAML = require('yamljs')
 const swaggerUi = require('swagger-ui-express');
 
@@ -19,25 +18,20 @@ apiRouter.get("/api/v1/cars", controllers.api.v1.carController.list);
 apiRouter.post(
   "/api/v1/cars", 
   controllers.api.v1.authController.authorize,
-  verifyRoles("superAdmin", "admin"),
+  controllers.api.v1.carController.verifyRoles("superAdmin", "admin"),
   controllers.api.v1.carController.create
 );
 apiRouter.put(
   "/api/v1/cars/:id", 
   controllers.api.v1.authController.authorize,
-  verifyRoles("superAdmin", "admin"),
+  controllers.api.v1.carController.verifyRoles("superAdmin", "admin"),
   controllers.api.v1.carController.update
 );
-apiRouter.get(
-  "/api/v1/cars/:id", 
-  controllers.api.v1.authController.authorize,
-  verifyRoles("superAdmin", "admin"),
-  controllers.api.v1.carController.show
-);
+apiRouter.get(controllers.api.v1.carController.show);
 apiRouter.delete(
   "/api/v1/cars/:id",
   controllers.api.v1.authController.authorize,
-  verifyRoles("superAdmin", "admin"),
+  controllers.api.v1.carController.verifyRoles("superAdmin", "admin"),
   controllers.api.v1.carController.destroy
 );
 apiRouter.get("/api/v1/whoami",
@@ -49,7 +43,7 @@ apiRouter.post("/api/v1/register", controllers.api.v1.authController.register);
 apiRouter.post(
   "/api/v1/createAdmin", 
   controllers.api.v1.authController.authorize,
-  verifyRoles("superAdmin"),
+  controllers.api.v1.carController.verifyRoles("superAdmin"),
   controllers.api.v1.authController.createAdmin
 );
 

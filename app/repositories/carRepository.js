@@ -14,7 +14,6 @@ module.exports = {
   },
 
   delete(id) {
-    console.log(id);
     return Cars.destroy({  
       where: {id: id},
       });

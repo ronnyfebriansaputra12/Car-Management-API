@@ -10,7 +10,6 @@ module.exports = {
   },
 
   delete(id) {
-    console.log(id);
     return carRepository.delete(id);
   },
 

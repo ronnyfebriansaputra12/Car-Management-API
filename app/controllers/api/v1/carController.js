@@ -5,6 +5,23 @@
 const carService = require("../../../services/carService");
 
 module.exports = {
+  verifyRoles(...allowedRoles){
+    return (req, res, next) =>{
+        userRole = Object.values(req.user)[0].role;
+        if(!userRole) return res.status(401).json({
+            status: "FAIL",
+            message: "you don't have role",
+          });
+        const rolesArray = [...allowedRoles];
+        const result = rolesArray.includes(userRole);
+        if(!result) return res.status(401).json({
+            status: "FAIL",
+            message: "you don't have permission",
+          });
+        next();
+    }
+  },
+
   list(req, res) {
     carService
       .list()
@@ -35,7 +52,7 @@ module.exports = {
       })
       .then((post) => {
         res.status(201).json({
-          status: "OK",
+          status: "Create Car successfully",
           data: post,
         });
       })
@@ -59,7 +76,7 @@ module.exports = {
       })
       .then(() => {
         res.status(200).json({
-          status: "OK",
+          status: "Update Car successfully",
         });
       })
       .catch((err) => {
@@ -88,11 +105,13 @@ module.exports = {
   },
 
   destroy(req, res) {
-    console.log(req.params.id);
+    userEmail = Object.values(req.user)[0].email;
     carService
       .delete(req.params.id)
       .then(() => {
-        res.status(204).end();
+        res.status(200).json({
+          status: `Delete Car successfully By ${userEmail}`,
+        });
       })
       .catch((err) => {
         res.status(422).json({

@@ -11,6 +11,7 @@ const {
   DB_PASSWORD = "ronny1202",
   DB_HOST = "127.0.0.1",
   DB_NAME = "cars",
+  DB_URI = "postgresql://postgres:H0N9BfcyjYPMWOMEADI2@containers-us-west-21.railway.app:6577/railway"
 } = process.env;
 
 const db = new Sequelize(DB_URI,{
